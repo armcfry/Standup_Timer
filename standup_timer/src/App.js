@@ -1,27 +1,25 @@
-import logo from './logo.svg';
 import React from "react";
 import './App.css';
 import Form from './Form';
 
-export default class App extends React.Component {
-  state = {
-    total: null,
-    next: null,
-    operation: null,
+function App() {
+  var standupVals = {duration:"", num_ppl:""};
+  console.log(standupVals)
+  const addStandup = (standupInfoVal) => {
+    standupVals=standupInfoVal;
+    standupVals["duration"] = standupInfoVal["duration"]
+    standupVals["num_ppl"] = standupInfoVal["num_ppl"]
+    console.log(standupVals)
   };
-
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-            <div>
-              <Form/>
-            </div>
-            
-        </header>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <header className="App-header">
+          <div>
+            <Form addStandup={addStandup}/>
+          </div>
+      </header>
+    </div>
+  );
 }
+
+export default App;
