@@ -14,6 +14,8 @@ export default function Form({addStandup}) {
     event.preventDefault();
     addStandup(standupInfo)
     setStandupInfo({ duration: "", num_ppl: ""});
+    this.props.history.push('/meeting')
+    // add section to trigger new screen
   };
   return (
     <form onSubmit={handleSubmit}>

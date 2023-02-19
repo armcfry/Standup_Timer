@@ -1,25 +1,24 @@
 import React from "react";
 import './App.css';
-import Form from './Form';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import NoPage from "./pages/NoPage";
+import Meeting from "./pages/Meeting";
 
 function App() {
-  var standupVals = {duration:"", num_ppl:""};
-  console.log(standupVals)
-  const addStandup = (standupInfoVal) => {
-    standupVals=standupInfoVal;
-    standupVals["duration"] = standupInfoVal["duration"]
-    standupVals["num_ppl"] = standupInfoVal["num_ppl"]
-    console.log(standupVals)
-  };
   return (
-    <div className="App">
-      <header className="App-header">
-          <div>
-            <Form addStandup={addStandup}/>
-          </div>
-      </header>
-    </div>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="meeting" element={<Meeting />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
+//createRoot(document.getElementById("root"));
 export default App;
