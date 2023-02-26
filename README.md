@@ -1,2 +1,5 @@
 # Standup_Timer
-a react application to use as a standup meeting timer
+A react application to use as a standup meeting timer.
+
+
+https://armcfry.github.io/Standup_Timer/
