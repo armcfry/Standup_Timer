@@ -2,6 +2,7 @@ import React from 'react';
 import Form from '../Form';
 
 
+
 var standupVals = {duration:"", num_ppl:""};
 console.log(standupVals)
 const addStandup = (standupInfoVal) => {

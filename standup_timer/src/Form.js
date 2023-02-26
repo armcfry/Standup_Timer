@@ -1,12 +1,15 @@
 import React from 'react'
 import './Form.css'
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Form({addStandup}) {
+  let navigate = useNavigate();
   const [standupInfo, setStandupInfo] = useState({
     duration: "",
     num_ppl: ""
   });
+
   const handleChange = (event) => {
     setStandupInfo({ ...standupInfo, [event.target.name]: event.target.value });
   };
@@ -14,8 +17,13 @@ export default function Form({addStandup}) {
     event.preventDefault();
     addStandup(standupInfo)
     setStandupInfo({ duration: "", num_ppl: ""});
-    this.props.history.push('/meeting')
+    // validate data
+
+    // creating meeting object
+    
     // add section to trigger new screen
+    navigate('/Meeting', {state:{duration:standupInfo["duration"],attendees:standupInfo["num_ppl"]}})
+
   };
   return (
     <form onSubmit={handleSubmit}>
