@@ -11,6 +11,10 @@ function Meeting() {
         dispatch(resetValues());
         navigate('/')
     };
+    const udpate_duration = () => {
+        dispatch(resetValues());
+        navigate('/')
+    };
     // get the values from the valueStore
     const { duration_value, attendees_value } = useSelector((state) => state.values);
     // parse the time values from the duration
@@ -19,6 +23,7 @@ function Meeting() {
     if(seconds===undefined){
         seconds = 0
     }
+    // TODO: add computation for duration per attendee (time/attendees)
     
     return (
         <div className="w3-container">
