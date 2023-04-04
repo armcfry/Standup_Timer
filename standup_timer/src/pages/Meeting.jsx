@@ -37,15 +37,15 @@ function Meeting() {
     // TODO: computational logic for dynamic time
     
     return (
-        <div className="w3-container">
+        <div className="w3-container" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <h3>Attendee # {(Number(attendees_value) + 1) - attendeesCount}</h3>
             <h1>
             {/* TODO: make a countup timer for the overall meeting time */}
             {/* <div><CountdownTimer minutes={minutes} seconds={seconds}/></div> */}
                 <div><CountdownTimer totalSeconds={total_time} onTimerEnd={handleTimerEnd}/></div>
             </h1>
-            <div>Attendee # {(Number(attendees_value) + 1) - attendeesCount}</div>
-            <button type="submit" onClick={handleNextAttendee}>Next Person</button>
-            <button type="submit" onClick={returnHome}>End Meeting</button>
+            <button type="submit" onClick={handleNextAttendee} style={{ display: "block", marginBottom: "10px" }}>Next Person</button>
+            <button type="submit" onClick={returnHome} style={{ display: "block" }}>End Meeting</button>
         </div>
     );
 }
