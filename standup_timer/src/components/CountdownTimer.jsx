@@ -3,10 +3,8 @@ import PropTypes from "prop-types";
 
 function CountdownTimer(props) {
   const [totalSeconds, setTotalSeconds] = useState(props.totalSeconds);
-  console.log(totalSeconds)
   useEffect(() => {
     setTotalSeconds(props.totalSeconds)
-    console.log("reset the timer")
     const timer = setInterval(() => {
       setTotalSeconds(prevTotalSeconds => {
         if (prevTotalSeconds > 0) {

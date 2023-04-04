@@ -14,14 +14,13 @@ function Meeting() {
     // get the values from the valueStore
     const { duration_value, attendees_value, speak_time_value} = useSelector((state) => state.values);
     const [attendeesCount, setAttendees] = useState(attendees_value)
-
     function handleTimerEnd() {
-        if (attendeesCount > 0) {
+        if (attendeesCount > 1) {
             setAttendees(prevAttendee => prevAttendee - 1);
         }
       }
     function handleNextAttendee() {
-        if (attendeesCount > 0) {
+        if (attendeesCount > 1) {
             setAttendees(prevAttendee => prevAttendee - 1);
         }
       }
@@ -39,12 +38,12 @@ function Meeting() {
     
     return (
         <div className="w3-container">
-            <h1>Meeting:
+            <h1>
             {/* TODO: make a countup timer for the overall meeting time */}
             {/* <div><CountdownTimer minutes={minutes} seconds={seconds}/></div> */}
+                <div><CountdownTimer totalSeconds={total_time} onTimerEnd={handleTimerEnd}/></div>
             </h1>
-            <div>Attendee # {6-attendeesCount}</div>
-            <div><CountdownTimer totalSeconds={total_time} onTimerEnd={handleTimerEnd}/></div>
+            <div>Attendee # {(Number(attendees_value) + 1) - attendeesCount}</div>
             <button type="submit" onClick={handleNextAttendee}>Next Person</button>
             <button type="submit" onClick={returnHome}>End Meeting</button>
         </div>
