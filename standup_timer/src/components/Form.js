@@ -45,14 +45,14 @@ export default function Form() {
           placeholder="5" 
           onChange={handleInputChange}
         />
-        <label htmlFor="speak_time">Time Per Participant</label>
+        {/* <label htmlFor="speak_time">Time Per Participant</label>
         <input 
           type="text" 
           id="speak_time" 
           name="speak_time" 
           placeholder="2:00" 
           onChange={handleInputChange}
-        />
+        /> */}
       </div>
       <button type="submit">Begin Meeting</button>
     </form>
