@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Standup_Timer/static/css/main.c71c2e49.css",
-    "main.js": "/Standup_Timer/static/js/main.f0669666.js",
+    "main.js": "/Standup_Timer/static/js/main.2a151110.js",
     "static/js/787.a4d271d1.chunk.js": "/Standup_Timer/static/js/787.a4d271d1.chunk.js",
     "static/media/miss_minutes.gif": "/Standup_Timer/static/media/miss_minutes.7c581f6171cec95fd87c.gif",
     "index.html": "/Standup_Timer/index.html",
     "main.c71c2e49.css.map": "/Standup_Timer/static/css/main.c71c2e49.css.map",
-    "main.f0669666.js.map": "/Standup_Timer/static/js/main.f0669666.js.map",
+    "main.2a151110.js.map": "/Standup_Timer/static/js/main.2a151110.js.map",
     "787.a4d271d1.chunk.js.map": "/Standup_Timer/static/js/787.a4d271d1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c71c2e49.css",
-    "static/js/main.f0669666.js"
+    "static/js/main.2a151110.js"
   ]
 }
