@@ -2,7 +2,7 @@ import React from 'react'
 import './Form.css'
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { set_duration_value, set_attendees_value } from '../store/valuesSlice';
+import { set_duration_value, set_attendees_value, set_speak_time_value } from '../store/valuesSlice';
 
 
 export default function Form() {
@@ -15,6 +15,8 @@ export default function Form() {
       dispatch(set_duration_value(value));
     } else if (id === 'num_ppl') {
       dispatch(set_attendees_value(value));
+    } else if (id === 'speak_time') {
+      dispatch(set_speak_time_value(value));
     }
   };
   const handleSubmit = (event) => {
@@ -29,11 +31,10 @@ export default function Form() {
       <div className="w3-container"> 
         <label htmlFor="duration">Standup Duration</label>
         <input 
-          type="text" 
+          type="text"
           id="duration" 
           name="duration" 
           placeholder="10:00" 
-          // value={standupInfo.duration}
           onChange={handleInputChange}
         />
         <label htmlFor="num_ppl">Number of Participants</label>
@@ -42,7 +43,14 @@ export default function Form() {
           id="num_ppl" 
           name="num_ppl" 
           placeholder="5" 
-          // value={standupInfo.num_ppl}
+          onChange={handleInputChange}
+        />
+        <label htmlFor="speak_time">Time Per Participant</label>
+        <input 
+          type="text" 
+          id="speak_time" 
+          name="speak_time" 
+          placeholder="2:00" 
           onChange={handleInputChange}
         />
       </div>
