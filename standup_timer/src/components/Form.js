@@ -32,7 +32,6 @@ export default function Form() {
         <label htmlFor="duration">Standup Duration</label>
         <input 
           type="text"
-          required pattern="[0-9]"
           id="duration" 
           name="duration" 
           placeholder="10:00" 
@@ -49,7 +48,6 @@ export default function Form() {
         <label htmlFor="speak_time">Time Per Participant</label>
         <input 
           type="text" 
-          required pattern="[0-9]{2}:[0-9]{2}"
           id="speak_time" 
           name="speak_time" 
           placeholder="2:00" 
