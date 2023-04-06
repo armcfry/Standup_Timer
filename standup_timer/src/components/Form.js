@@ -1,8 +1,9 @@
 import React from 'react'
 import './Form.css'
+import './Slider.css'
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { set_duration_value, set_attendees_value, set_speak_time_value } from '../store/valuesSlice';
+import { set_duration_value, set_attendees_value, set_speak_time_value, set_overtime_value } from '../store/valuesSlice';
 
 
 export default function Form() {
@@ -17,6 +18,8 @@ export default function Form() {
       dispatch(set_attendees_value(value));
     } else if (id === 'speak_time') {
       dispatch(set_speak_time_value(value));
+    } else if (id === 'overtime') {
+      dispatch(set_overtime_value(event.target.checked))
     }
   };
   const handleSubmit = (event) => {
@@ -53,6 +56,18 @@ export default function Form() {
           placeholder="2:00" 
           onChange={handleInputChange}
         /> */}
+      </div>
+      <div className="flex-container">
+        <label>Allow Overtime</label>
+        <label className="switch">
+          <input type="checkbox" 
+                 name="overtime"
+                 id = "overtime"
+                 value = "overtime"
+                 onChange={handleInputChange}
+          />
+          <span className="slider round"></span>
+        </label>
       </div>
       <button type="submit">Begin Meeting</button>
     </form>

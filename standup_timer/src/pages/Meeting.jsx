@@ -12,7 +12,7 @@ function Meeting() {
         navigate('/')
     };
     // get the values from the valueStore
-    const { duration_value, attendees_value, speak_time_value} = useSelector((state) => state.values);
+    const { duration_value, attendees_value, speak_time_value, overtime_value} = useSelector((state) => state.values);
     const [attendeesCount, setAttendees] = useState(attendees_value)
     function handleTimerEnd() {
         if (attendeesCount > 1) {
@@ -42,7 +42,7 @@ function Meeting() {
             <h1>
             {/* TODO: make a countup timer for the overall meeting time */}
             {/* <div><CountdownTimer minutes={minutes} seconds={seconds}/></div> */}
-                <div><CountdownTimer totalSeconds={total_time} onTimerEnd={handleTimerEnd}/></div>
+                <div><CountdownTimer totalSeconds={total_time} onTimerEnd={handleTimerEnd} overtime={overtime_value}/></div>
             </h1>
             <button type="submit" onClick={handleNextAttendee} style={{ display: "block", marginBottom: "10px" }}>Next Person</button>
             <button type="submit" onClick={returnHome} style={{ display: "block" }}>End Meeting</button>
