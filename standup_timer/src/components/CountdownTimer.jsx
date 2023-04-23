@@ -1,40 +1,45 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from "prop-types";
+import pause_lines from '../assets/pause_lines.png';
 
 function CountdownTimer(props) {
-  const [totalSeconds, setTotalSeconds] = useState(props.totalSeconds);
+  const {attendees_value, pause_value} = useSelector((state) => state.values);
+  const [attendeesCount, setAttendees] = useState(attendees_value)
+  const [timerState, setTimerState] = useState({ totalSeconds: props.totalSeconds, pause: pause_value });
+
   let overtimeTrigger = false;
+  
   useEffect(() => {
-    setTotalSeconds(props.totalSeconds)
-    const timer = setInterval(() => {
-      setTotalSeconds(prevTotalSeconds => {
-        if (overtimeTrigger === false) {
-          // if timer is not at 0
-          if (prevTotalSeconds > 0) {
-            return prevTotalSeconds - 1;
-          }
-           // if timer is at 0 
-          else {
-            // if overtime is allowed, set the trigger to true to start counting up  
-            if (props.overtime === true){ 
-                overtimeTrigger = true;
-                // this will count up forever until the user click next attendee
-                return prevTotalSeconds + 1; 
-              }
-              // if overtime is not allowed, skip to the next attendee automatically 
-              else {
-                clearInterval(timer);
-                props.onTimerEnd();
-                return prevTotalSeconds;
-              }
+    if(!timerState.pause){
+      const timer = setInterval(() => {
+        setTimerState(prevState => {
+          const { totalSeconds } = prevState;
+          if (overtimeTrigger === false) {
+            if (totalSeconds > 0) {
+              // spread operator is used because only 1/2 properties is being updated
+              return { ...prevState, totalSeconds: totalSeconds - 1 };
             }
-        } else {
-            return prevTotalSeconds + 1;
-        }
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [props.onTimerEnd]);
+            else {
+              if (props.overtime === true){ 
+                  overtimeTrigger = true;
+                  return { ...prevState, totalSeconds: totalSeconds + 1 };
+                }
+                else {
+                  clearInterval(timer);
+                  handleTimerEnd();
+                  return prevState;
+                }
+              }
+          } else {
+              return { ...prevState, totalSeconds: totalSeconds + 1 };
+          }
+        });
+      }, 1000);
+      return () => clearInterval(timer);
+    }
+
+  }, [timerState.pause]);
 
   function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
@@ -44,17 +49,32 @@ function CountdownTimer(props) {
     return `${formattedMinutes}:${formattedSeconds}`;
   }
 
+  function pauseTimer() {
+    setTimerState(prevState => ({ ...prevState, pause: !prevState.pause }));
+  }
+
+  function handleTimerEnd() {
+    if (attendeesCount > 1) {
+        setAttendees(prevAttendee => prevAttendee - 1);
+        setTimerState({ totalSeconds: props.totalSeconds, pause: false });
+    }
+  }
+
   return (
-    <div>
-      <p>Time left: {formatTime(totalSeconds)}</p>
+    <div className="w3-container" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div>Attendee # {(Number(attendees_value) + 1) - attendeesCount}</div>
+      <h1>{formatTime(timerState.totalSeconds)}</h1>
+      <div className="w3-container" style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+        <button className = "pause_img" type="pauseButton" onClick={pauseTimer} ><img src={pause_lines}/></button>
+        <button type="submit" onClick={handleTimerEnd} style={{ display: "block", marginBottom: "10px" }}>Next Person</button>
+      </div>
     </div>
   );
 }
 
 CountdownTimer.propTypes = {
   totalSeconds: PropTypes.number.isRequired,
-  onTimerEnd: PropTypes.func.isRequired,
-  overtime: PropTypes.bool
+  overtime: PropTypes.bool,
 };
 
 export default CountdownTimer;
