@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+
 import { useNavigate} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { resetValues } from '../store/valuesSlice';
@@ -12,18 +12,7 @@ function Meeting() {
         navigate('/')
     };
     // get the values from the valueStore
-    const { duration_value, attendees_value, speak_time_value, overtime_value} = useSelector((state) => state.values);
-    const [attendeesCount, setAttendees] = useState(attendees_value)
-    function handleTimerEnd() {
-        if (attendeesCount > 1) {
-            setAttendees(prevAttendee => prevAttendee - 1);
-        }
-      }
-    function handleNextAttendee() {
-        if (attendeesCount > 1) {
-            setAttendees(prevAttendee => prevAttendee - 1);
-        }
-      }
+    const { duration_value, attendees_value, overtime_value} = useSelector((state) => state.values);
 
     // parse the time values from the duration of the entire meeting
     let [minutes, seconds] = duration_value.toString().split(':').map(parseFloat);
@@ -33,19 +22,14 @@ function Meeting() {
     }
     // calculate the duration for each attendee of the meeting
     const total_time = Math.floor(((minutes*60)+seconds)/attendees_value);
-
     // TODO: computational logic for dynamic time
     
     return (
-        <div className="w3-container" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <h3>Attendee # {(Number(attendees_value) + 1) - attendeesCount}</h3>
-            <h1>
+       <div className="w3-container" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             {/* TODO: make a countup timer for the overall meeting time */}
             {/* <div><CountdownTimer minutes={minutes} seconds={seconds}/></div> */}
-                <div><CountdownTimer totalSeconds={total_time} onTimerEnd={handleTimerEnd} overtime={overtime_value}/></div>
-            </h1>
-            <button type="submit" onClick={handleNextAttendee} style={{ display: "block", marginBottom: "10px" }}>Next Person</button>
-            <button type="submit" onClick={returnHome} style={{ display: "block" }}>End Meeting</button>
+            <h1><CountdownTimer totalSeconds={total_time} overtime={overtime_value}/></h1>
+            <button type="end_meeting" onClick={returnHome} style={{ display: "block" }}>End Meeting</button>
         </div>
     );
 }

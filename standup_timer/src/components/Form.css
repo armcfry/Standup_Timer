@@ -21,6 +21,7 @@ label{
 
 button[type=submit] {
   max-width: 200px;
+  height: 40px;
   background-color: #984caf;
   color: white;
   padding: 14px 20px;
@@ -35,15 +36,52 @@ button[type=submit]:hover {
   background-color: #5745a0;
 }
 
+button[type=end_meeting] {
+  max-width: 200px;
+  background-color: #cd4527;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  justify-content: center;
+}
+
+button[type=end_meeting]:hover {
+  background-color: #9c4a31;
+}
+
+button[type=pauseButton] {
+  background-color: #ffffff;
+  border: none;
+  height:40px;
+  justify-content: center;
+  border-radius: 8px;
+  background-size: 100%;
+  cursor: pointer;
+  margin: 10px;
+}
+
+button[type=pauseButton]:hover {
+  background-color: #5745a0;
+  border: none;
+}
+
+.pause_img img {
+  width: 30px;
+  height: 30px;
+}
+
 div {
   border-radius: 5px;
   background-color: #00acb1;
   justify-content: center;
-  padding: 25px 50px;
+  /* padding: 25px 50px; */
   margin: 8px 0;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 100px) {
   div {
     border-radius: 0px;
     background-color: #00acb1;
