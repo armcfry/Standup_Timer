@@ -69,7 +69,7 @@ export default function Form() {
           <span className="slider round"></span>
         </label>
       </div>
-      <button type="submit">Begin Meeting</button>
+      <button type="start">Begin Meeting</button>
     </form>
   )
 }
