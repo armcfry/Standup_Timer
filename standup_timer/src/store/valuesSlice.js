@@ -23,6 +23,9 @@ export const valuesSlice = createSlice({
     },
     set_pause_value: (state, action) => {
       state.pause_value = action.payload;
+    },    
+    set_overtime_trigger: (state, action) => {
+      state.overtime_trigger = action.payload;
     },
     resetValues: (state) => {
         console.log("Resetting the values")
@@ -31,6 +34,7 @@ export const valuesSlice = createSlice({
         state.speak_time_value = 2;
         state.overtime_value = false;
         state.pause_value = false;
+        state.overtime_trigger = false;
     },
   },
 });
@@ -40,6 +44,7 @@ export const { set_duration_value,
                set_speak_time_value, 
                set_overtime_value,
                set_pause_value,
+               set_overtime_trigger,
                resetValues } = valuesSlice.actions;
 
 export default valuesSlice.reducer;
