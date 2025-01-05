@@ -6,7 +6,9 @@ export const valuesSlice = createSlice({
     duration_value: "10:00",
     attendees_value: 5,
     speak_time_value: 2,
-    overtime: false
+    overtime: false,
+    pause_value: false,
+    overtime_trigger: false
   },
   reducers: {
     set_duration_value: (state, action) => {
